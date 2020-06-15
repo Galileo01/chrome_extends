@@ -24,7 +24,7 @@
     "default_title": "暗黑模式V2",
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "img/night.png"
+      "16": "img/icon.png"
     }
   },
   "web_accessible_resources": [

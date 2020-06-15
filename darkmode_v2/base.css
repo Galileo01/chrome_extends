@@ -20,8 +20,11 @@
     width: 200px;
 }
 
+.body-dark{
+    background: #222425 !important;
+}
 .dark-mode {
-    background-color: #222425 !important;
+    background: #222425 !important;
     color: #fff !important;
 }
 
@@ -29,7 +32,7 @@
 
 .dark-mode a, .dark-mode pre, .dark-mode span, .dark-mode code, .dark-mode p, .dark-mode h1, .dark-mode h2, .dark-mode h3 {
     color: #fff !important;
-    background-color: #222425 !important;
+    background: #222425 !important;
 }
 
 /* pop */

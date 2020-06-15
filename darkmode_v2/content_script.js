@@ -2,6 +2,7 @@ $(function () {
     const switchBtn = $('<div class="switch">日间</div>');
     let mode = 'day'; //模式
     document.body.appendChild(switchBtn[0]);
+    // $(document.body).prepend(switchBtn);//添加到 body 的最前面
     let preLength = 0; //记录之前 的个数
 
     //发送消息，更改popup.html 的文字
@@ -25,6 +26,7 @@ $(function () {
             sections.addClass('dark-mode');
             uls.addClass('dark-mode');
             tds.addClass('dark-mode');
+            document.body.classList.add('body-dark');
             switchBtn.html('夜间').removeClass('dark-mode');
             mode = 'night';
         } else {
@@ -33,6 +35,7 @@ $(function () {
             sections.removeClass('dark-mode');
             uls.removeClass('dark-mode');
             tds.removeClass('dark-mode');
+            document.body.classList.remove('body-dark');
             switchBtn.html('日间').removeClass('dark-mode');
             mode = 'day';
         }
@@ -101,7 +104,4 @@ $(function () {
         //更改 扩展的全局数据
         chrome.storage.sync.set({ isSupported: false });
     }
-    //由于 background.js 背景页的环境只有一个，所有的 content共享一个backround
-    //绑定标签页切换事件处理函数，重置 扩展的全局属性loaded
-    document.addEventListener('visibilitychange', () => {});
 });
