@@ -1,0 +1,54 @@
+{
+  "name": "暗黑模式v2",
+  "version": "2.0",
+  "description": "网页强制暗黑模式",
+  "permissions": [
+    "activeTab",
+    "declarativeContent",
+    "storage",
+    "contextMenus",
+    "webRequest",
+    "webRequestBlocking",
+    "tabs",
+    "contextMenus",
+    "http://*/*",
+    "https://*/*"
+  ],
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": true
+  },
+  "browser_action": {
+    "default_title": "暗黑模式V2",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "img/night.png"
+    }
+  },
+  "web_accessible_resources": [
+    "js/inject.js",
+    "images/**",
+    "ajax_interceptor.js"
+  ],
+  "icons": {
+    "16": "img/night.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "lib/jquery3.4.min.js",
+        "content_script.js"
+      ],
+      "css": [
+        "base.css"
+      ]
+    }
+  ],
+  "manifest_version": 2
+}
