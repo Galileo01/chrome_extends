@@ -1,5 +1,5 @@
 //设置 扩展 的全局变量
-chrome.storage.sync.set({ isAuto: false });
+chrome.storage.sync.set({ isAuto: true });//自动识别系统 暗黑模式，默认打开
 chrome.storage.sync.set({ loaded: false });
 chrome.storage.sync.set({ isSupported: true });
 //接受 扩展内 其他页面的  消息发送

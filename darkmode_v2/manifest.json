@@ -1,6 +1,6 @@
 {
   "name": "暗黑模式v2",
-  "version": "2.0",
+  "version": "2.1.1",
   "description": "网页强制暗黑模式",
   "permissions": [
     "activeTab",

@@ -11,8 +11,8 @@ $(function () {
     });
     console.log('loaded');
 
-    //监听点击事件 ，，改变 主题
-    switchBtn.on('click', function () {
+    //切换到 暗黑模式
+    const toDarkMode = () => {
         const divs = $('div');
         preLength = divs.length;
         const navs = $('nav');
@@ -20,23 +20,45 @@ $(function () {
         const uls = $('ul');
         const tds = $('td');
         console.log(divs.length);
+        divs.addClass('dark-mode');
+        navs.addClass('dark-mode');
+        sections.addClass('dark-mode');
+        uls.addClass('dark-mode');
+        tds.addClass('dark-mode');
+        //单独适配 微博网页端 video 上方使用div 遮罩层工具栏的   造成的 视频 一篇黑的 问题
+        if (window.location.href.includes('weibo')) {
+            const masks = $('.wbv-pop-layer');
+            if (masks.length > 0) {
+                masks.removeClass('dark-mode');
+            }
+        }
+        document.body.classList.add('body-dark');
+        switchBtn.html('夜间').removeClass('dark-mode');
+    };
+    //恢复原始的样式
+    const restore = () => {
+        const divs = $('div');
+        preLength = divs.length;
+        const navs = $('nav');
+        const sections = $('section'); // section 用的少
+        const uls = $('ul');
+        const tds = $('td');
+        divs.removeClass('dark-mode');
+        navs.removeClass('dark-mode');
+        sections.removeClass('dark-mode');
+        uls.removeClass('dark-mode');
+        tds.removeClass('dark-mode');
+        document.body.classList.remove('body-dark');
+        switchBtn.html('日间').removeClass('dark-mode');
+    };
+
+    //监听点击事件 ，，改变 主题
+    switchBtn.on('click', function () {
         if (mode === 'day') {
-            divs.addClass('dark-mode');
-            navs.addClass('dark-mode');
-            sections.addClass('dark-mode');
-            uls.addClass('dark-mode');
-            tds.addClass('dark-mode');
-            document.body.classList.add('body-dark');
-            switchBtn.html('夜间').removeClass('dark-mode');
+            toDarkMode();
             mode = 'night';
         } else {
-            divs.removeClass('dark-mode');
-            navs.removeClass('dark-mode');
-            sections.removeClass('dark-mode');
-            uls.removeClass('dark-mode');
-            tds.removeClass('dark-mode');
-            document.body.classList.remove('body-dark');
-            switchBtn.html('日间').removeClass('dark-mode');
+            restore();
             mode = 'day';
         }
     });
@@ -82,22 +104,23 @@ $(function () {
     if (colorSchemeQuery.media === '(prefers-color-scheme: dark)') {
         //获取 扩展 的全局变量 ,检测是否要自动识别
         chrome.storage.sync.get('isAuto', function ({ isAuto }) {
-            console.log(isAuto);
             if (isAuto && colorSchemeQuery.matches) {
                 //如果选择了是并且系统 已经开启了 暗黑模式
-                const divs = $('div');
-                preLength = divs.length;
-                const navs = $('nav');
-                const sections = $('section'); // section 用的少
-                const uls = $('ul');
-                console.log(divs.length);
-                divs.addClass('dark-mode');
-                navs.addClass('dark-mode');
-                sections.addClass('dark-mode');
-                uls.addClass('dark-mode');
-                switchBtn.html('夜间').removeClass('dark-mode');
+                toDarkMode();
                 mode = 'night';
             }
+        });
+
+        //监听 系统主题的变化 ,跟随主题
+        colorSchemeQuery.addListener(function () {
+            chrome.storage.sync.get('isAuto', function ({ isAuto }) {
+                console.log(isAuto);
+                if (isAuto) {
+                    if (colorSchemeQuery.matches) {
+                        toDarkMode();
+                    } else restore();
+                }
+            });
         });
     } else {
         console.log('当前浏览器不支持跟随系统暗黑模式');
