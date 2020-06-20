@@ -2,7 +2,7 @@
 
 写的一些谷歌扩展，就写着玩玩  
 参考文档：  
-[1.掘金文章](https://juejin.im/post/5e8ea783f265da47f60eae7e#heading-9)  文章里面也有参考文章  
+[1.掘金文章](https://juejin.im/post/5e8ea783f265da47f60eae7e#heading-9) 文章里面也有参考文章  
 [2.manifest](https://developer.chrome.com/extensions/manifest)  
 [3.w3cschool](https://www.w3cschool.cn/kesyi/kesyi-m5uo24rx.html)  
 [4.chrome 插件网](https://huajiakeji.com/dev/2019-01/1784.html)
@@ -40,7 +40,15 @@
 
 ### 2. 滚动截屏
 
-目前构思的是，一个支持 网页截全屏和滚动截屏的扩展，不知道能不能做出了。。。。555
+1. 功能
+
+-   截取全屏
+-   滚动页面选择 截取的范围
+
+**思路:**
+开始截取后,在background.js 内 通过api  chrome.tabs.captureVisibleTab 保存浏览器可视范围内的图像,再通知 content 滚动页面,最后处理 边界值.
+
+**bug**:无法解决,实现的时候发现,通过 chrome 浏览器 提供的 api: chrome.tabs.captureVisibleTab 截取到的视图宽高 和页面 client 的宽高不一致,导致了 边界处理 和图片的拼接有一些问题,个人暂时无法解决  555555
 
 #### 安装方法
 

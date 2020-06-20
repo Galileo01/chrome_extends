@@ -1,7 +1,7 @@
 {
-  "name": "暗黑模式v2",
-  "version": "2.1.1",
-  "description": "网页强制暗黑模式",
+  "name": "网页截屏",
+  "version": "0.5.0",
+  "description": "网页截屏工具",
   "permissions": [
     "activeTab",
     "declarativeContent",
@@ -21,7 +21,7 @@
     "persistent": true
   },
   "browser_action": {
-    "default_title": "暗黑模式V2",
+    "default_title": "网页截屏",
     "default_popup": "popup.html",
     "default_icon": {
       "16": "img/icon.png"
@@ -42,7 +42,6 @@
         "https://*/*"
       ],
       "js": [
-        "lib/jquery3.4.min.js",
         "content_script.js"
       ],
       "css": [

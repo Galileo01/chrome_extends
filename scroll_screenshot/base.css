@@ -1,0 +1,35 @@
+.show {
+    width: 200px;
+}
+
+.show .title {
+    font-weight: bold;
+}
+
+.mask {
+    top: 0;
+    position: fixed;
+    z-index: 9999;
+    background-color: rgba(36, 41, 46, .5);
+    height: 100%;
+    width: 100%;
+}
+
+.screenshot button {
+    border: 1px solid #dcdfe6;
+    cursor: pointer;
+    padding: 4px;
+    display: inline-block;
+    background-color: #fff;
+    border-radius: 4px;
+}
+
+.screenshot button.primary {
+    background-color: #409eff;
+    color: #fff;
+}
+
+.screenshot button.danger {
+    background-color: #f56c6c;
+    color: #fff;
+}
